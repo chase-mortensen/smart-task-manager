@@ -4,10 +4,10 @@
       <div class="flex items-center">
         <div class="ml-4">
           <span v-if="task.state">
-            <input type="checkbox" checked v-model="task.state">
+            <input type="checkbox" v-model="task.state" class="rounded" checked>
           </span>
           <span v-if="!task.state">
-            <input type="checkbox" v-model="task.state">
+            <input type="checkbox" v-model="task.state" class="rounded">
           </span>
           <span class="text-sm font-medium text-gray-900">
             &nbsp;{{ task.name }}
