@@ -1,29 +1,31 @@
 <template>
   <div>
-    <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+    <Disclosure as="nav" class="bg-gray-600" v-slot="{ open }">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
+              <h2 class="text-xl font-bold text-white">
+                Smart Task Manager
+              </h2>
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <template v-for="(item, itemIdx) in navigation" :key="item">
                   <template v-if="(itemIdx === 0)">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">{{ item }}</a>
+                    <a href="#" class="bg-transparent text-white px-3 py-2 rounded-md text-sm font-medium">{{ item }}</a>
                   </template>
-                  <a v-else href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ item }}</a>
+                  <a v-else href="#" class="text-gray-200 hover:bg-purple-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ item }}</a>
                 </template>
               </div>
             </div>
           </div>
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6">
-              <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+              <button class="bg-transparent p-1 rounded-full text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-500 focus:ring-white">
                 <span class="sr-only">View notifications</span>
-                <BellIcon class="h-6 w-6" aria-hidden="true" />
+                <CogIcon class="h-6 w-6" aria-hidden="true" />
               </button>
 
               <!-- Profile dropdown -->
@@ -86,18 +88,24 @@
       </DisclosurePanel>
     </Disclosure>
 
-    <header class="bg-white shadow">
+    <!-- <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900">
+        <h2 class="text-xl font-bold text-gray-900">
           Dashboard
-        </h1>
+        </h2>
       </div>
-    </header>
+    </header> -->
     <main>
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Replace with your content -->
-        <TaskList :tasks="state.tasks" />
-        <!-- /End replace -->
+      <div class="grid xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1">
+        <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:ml-auto py-6 sm:px-6 xl:pl-8 xl:pr-4">
+          <TaskList :tasks="state.tasks" />
+        </div>
+        <!-- <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4"> -->
+        <div class="max-w-7xl sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4">
+
+          <!-- <TaskList :tasks="state.tasks" /> -->
+          <div class="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+        </div>
       </div>
     </main>
   </div>
@@ -106,7 +114,7 @@
 <script setup>
 import { defineProps, reactive, ref } from 'vue'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
+import { BellIcon, MenuIcon, XIcon, CogIcon } from '@heroicons/vue/outline'
 
 import TaskList from './components/TaskList.vue'
 import HelloWorld from './components/HelloWorld.vue'
