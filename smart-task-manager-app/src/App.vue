@@ -96,11 +96,8 @@
       </div>
     </header> -->
     <main>
-      <div class="grid xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1">
+      <div class="grid xl:grid-cols-2 sm:grid-cols-1">
         <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:ml-auto py-6 sm:px-6 xl:pl-8 xl:pr-4">
-          <!-- <div v-if="state.innerHeight < 500">Mobile</div>
-          <div v-else>Not mobile</div> -->
-          <span>innerWidth: {{ state.innerWidth }}</span>
           <TaskList :tasks="state.tasks" />
         </div>
         <!-- <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4"> -->
@@ -162,18 +159,6 @@ const state = reactive({ tasks: [
       console.log("innerWidth: ", this.innerWidth)
     })
   },
-
-  // beforeDestroy() { 
-  //   window.removeEventListener('resize', () => {
-  //       this.windowHeight = window.innerHeight
-  //     }); 
-  // },
-
-  // methods: {  
-  //   onResize() {
-  //     this.innerWidth = window.innerWidth
-  //   }
-  // }
 })
 
 

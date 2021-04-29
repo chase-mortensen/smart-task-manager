@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td class="px-6 py-4 whitespace-nowrap">
+    <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
         <div class="ml-4">
           <span v-if="task.state">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap">
+    <td class="px-6 py-4 whitespace-nowrap" v-show="!state.isMobile">
       <span v-if="task.type == 'Shopping'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
         {{ task.type }}
       </span>
@@ -29,7 +29,7 @@
         {{ task.type }}
       </span>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-show="!state.isMobile">
       <span v-if="task.duration >= 60">{{ Math.floor(task.duration / 60) }} hrs </span>
       <span v-if="task.duration % 60 != 0">{{ task.duration % 60 }} mins</span>
     </td>
@@ -44,6 +44,18 @@ import { defineProps, reactive } from 'vue'
 
 defineProps({
   task: Object
+})
+
+const state = reactive({
+  innerWidth: window.innerWidth,
+  isMobile: window.innerWidth < 550,
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.innerWidth = window.innerWidth
+      this.isMobile = window.innerWidth < 550
+      console.log("innerWidth: ", this.innerWidth)
+    })
+  },
 })
 
 </script>
