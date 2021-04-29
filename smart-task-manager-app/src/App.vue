@@ -104,7 +104,9 @@
         <div class="max-w-7xl sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4">
 
           <!-- <TaskList :tasks="state.tasks" /> -->
-          <div class="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+          <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
+            <button @click="this.$store.commit('increment')">count is: {{ this.$store.state.count }}</button>
+          </div>
         </div>
       </div>
     </main>
