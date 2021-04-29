@@ -78,7 +78,7 @@
             </div>
             <button class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
+              <CogIcon class="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div class="mt-3 px-2 space-y-1">
@@ -98,6 +98,9 @@
     <main>
       <div class="grid xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1">
         <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:ml-auto py-6 sm:px-6 xl:pl-8 xl:pr-4">
+          <!-- <div v-if="state.innerHeight < 500">Mobile</div>
+          <div v-else>Not mobile</div> -->
+          <span>innerWidth: {{ state.innerWidth }}</span>
           <TaskList :tasks="state.tasks" />
         </div>
         <!-- <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4"> -->
@@ -138,9 +141,11 @@ const state = reactive({ tasks: [
       MenuItem,
       MenuItems,
       BellIcon,
+      CogIcon,
       MenuIcon,
       XIcon,
     },
+    innerWidth: window.innerWidth,
   setup() {
     const open = ref(false)
 
@@ -150,6 +155,25 @@ const state = reactive({ tasks: [
       open,
     }
   },
+
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.innerWidth = window.innerWidth
+      console.log("innerWidth: ", this.innerWidth)
+    })
+  },
+
+  // beforeDestroy() { 
+  //   window.removeEventListener('resize', () => {
+  //       this.windowHeight = window.innerHeight
+  //     }); 
+  // },
+
+  // methods: {  
+  //   onResize() {
+  //     this.innerWidth = window.innerWidth
+  //   }
+  // }
 })
 
 

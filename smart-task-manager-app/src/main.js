@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 import App from './App.vue'
 import './index.css'
 
+
 const store = createStore({
   state () {
     return {
