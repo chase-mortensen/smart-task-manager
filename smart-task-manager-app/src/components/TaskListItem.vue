@@ -3,12 +3,8 @@
     <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
         <div class="ml-4">
-          <span v-if="task.state">
-            <input type="checkbox" v-model="task.state" class="rounded" checked>
-          </span>
-          <span v-if="!task.state">
-            <input type="checkbox" v-model="task.state" class="rounded">
-          </span>
+          <!-- {{ this.isComplete(task.id) }}? -->
+            <input type="checkbox" @click="this.$store.commit('switchCompletion', task.id)" class="rounded">
           <span class="text-sm font-medium text-gray-900">
             &nbsp;{{ task.name }}
           </span>
@@ -56,6 +52,12 @@ const state = reactive({
       console.log("innerWidth: ", this.innerWidth)
     })
   },
+  methods: {
+    isComplete (id) {
+      return $store.state.tasks.find(t => t.id == id).isComplete
+    },
+  }
 })
+
 
 </script>

@@ -12,7 +12,8 @@
         >
           <table class="min-w-full divide-y divide-gray-200">
             <tbody class="bg-white divide-y divide-gray-200">
-              <TaskListItem v-for="task in tasks" :key="task.id" :task="task" />
+              <TaskListItem v-for="task in this.$store.getters.incompleteTasks" :key="task.id" :task="task" />
+              <TaskListItem v-for="task in this.$store.getters.completeTasks" :key="task.id" :task="task" />
             </tbody>
           </table>
         </div>
