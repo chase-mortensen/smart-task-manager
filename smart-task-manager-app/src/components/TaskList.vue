@@ -4,6 +4,7 @@
       <div
         class="py-2 align-middle inline-block min-w-full w-auto sm:px-6 lg:px-8"
       >
+      <!-- <h2>&nbsp;Task List</h2> -->
         <TaskListSearchBar
           class="min-w-full max-w-full divide-y divide-gray-200"
         />
