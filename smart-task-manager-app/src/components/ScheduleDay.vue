@@ -9,8 +9,12 @@
         >
           <table class="min-w-full divide-y divide-gray-200">
             <tbody class="bg-white divide-y divide-gray-200">
-              <TaskListItem v-for="task in this.$store.getters.incompleteTasks" :key="task.id" :task="task" />
-              <TaskListItem v-for="task in this.$store.getters.completeTasks" :key="task.id" :task="task" />
+              <!-- <ScheduleDayItem v-for="task in this.$store.getters.incompleteTasks" :key="task.id" :task="task" /> -->
+              <!-- <ScheduleDayItem v-for="task in this.$store.getters.completeTasks" :key="task.id" :task="task" /> -->
+              <div v-for="date in this.$store.getters.datesWithTasks" :key="date">
+                <h2>{{ date }}</h2>
+                <p v-for="task in this.$store.getters.tasksByDate(date)" :key="task.id">{{ task.name }}</p>
+              </div>
             </tbody>
           </table>
         </div>
@@ -20,6 +24,6 @@
 </template>
 
 <script setup>
-import TaskListItem from "./TaskListItem.vue";
+import ScheduleDayItem from "./ScheduleDayItem.vue";
 
 </script>
