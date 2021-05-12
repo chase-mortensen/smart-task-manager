@@ -1,5 +1,5 @@
 <template>
-  <tr v-on:click="console.log('clicked...')">
+  <tr>
     <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
         <div class="ml-4">
@@ -30,7 +30,7 @@
       <span v-if="task.duration % 60 != 0">{{ task.duration % 60 }} mins</span>
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <a href="#" class="text-indigo-600 hover:text-indigo-500">Details</a>
+      <button class="text-indigo-600 hover:text-indigo-500" v-on:click="console.log('clicked...')">Details</button>
     </td>
   </tr>
 </template>

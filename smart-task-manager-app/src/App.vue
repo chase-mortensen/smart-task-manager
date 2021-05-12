@@ -101,7 +101,7 @@
           <TaskList />
         </div>
         <!-- <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4"> -->
-        <div class="max-w-7xl sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4">
+        <div class="max-w-7xl sm:min-w-min xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4">
           <!-- <h2>&nbsp;Schedule</h2> -->
           <Schedule />
           <!-- <TaskList :tasks="state.tasks" /> -->

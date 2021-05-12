@@ -2,10 +2,9 @@
   <div>
     <!-- for date in dates with tasks... -->
       <!-- show date -->
-      <h2>Date</h2>
 
       <!-- display tasks for date -->  
-      <ScheduleDay />
+      <ScheduleDay v-for="date in this.$store.getters.datesWithTasks" :key="date" :date="date" />
 
   </div>
 </template>
