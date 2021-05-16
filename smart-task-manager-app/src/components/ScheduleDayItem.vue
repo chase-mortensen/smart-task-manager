@@ -1,5 +1,8 @@
 <template>
   <tr v-on:click="console.log('clicked...')">
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-show="!state.isMobile">
+      <span>{{ new Date(task.scheduledStartTime).getHours() }}</span>
+    </td>
     <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
         <div class="ml-4">
@@ -25,12 +28,12 @@
         {{ task.type }}
       </span>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-show="!state.isMobile">
+    <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-show="!state.isMobile">
       <span v-if="task.duration >= 60">{{ Math.floor(task.duration / 60) }} hrs </span>
       <span v-if="task.duration % 60 != 0">{{ task.duration % 60 }} mins</span>
-    </td>
+    </td> -->
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <a href="#" class="text-indigo-600 hover:text-indigo-500">Details</a>
+      <button class="text-indigo-600 hover:text-indigo-500">Details</button>
     </td>
   </tr>
 </template>

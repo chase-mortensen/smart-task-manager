@@ -12,7 +12,7 @@
               <tr>
                 <th scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-gray-500 uppercase tracking-wider">
                   <!-- <strong>{{ formatDate(date) }}</strong> -->
-                  {{ date }}
+                  {{ formatDate(date) }}
                 </th>
                 <th></th>
                 <th></th>
@@ -31,7 +31,7 @@
 
 </template>
 
-<script setup>
+<script>
 import ScheduleDayItem from "./ScheduleDayItem.vue";
 
 import { defineProps, reactive } from 'vue'
@@ -40,16 +40,46 @@ defineProps({
   date: String
 })
 
-// const state = reactive({
-//   data() {
+export default{
+  data() {
 
-//   },
-//   methods: {
-//     formatDate (date) {
-//       let formattedDate = new Date(date)
-//       return formattedDate
-//     },
-//   }
-// })
+  },
+  methods: {
+    formatDate (date) {
+      let day = new Date(date).getMonth()
+      return day
+    },
+    getDay (date) {
+      return 'Tuesday'
+    }
+  }
+}
 
 </script>
+
+<!-- I'm still trying to figure out the script setup... -->
+<!-- <script setup>
+import ScheduleDayItem from "./ScheduleDayItem.vue";
+
+import { defineProps, reactive } from 'vue'
+
+defineProps({
+  date: String
+})
+
+const state = reactive({
+  data() {
+
+  },
+  methods: {
+    formatDate (date) {
+      let formattedDate = new Date(date)
+      return formattedDate
+    },
+    getDay (date) {
+      return 'Tuesday'
+    }
+  }
+})
+
+</script> -->
