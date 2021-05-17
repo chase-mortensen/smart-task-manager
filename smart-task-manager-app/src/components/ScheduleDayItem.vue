@@ -1,19 +1,29 @@
 <template>
   <tr v-on:click="console.log('clicked...')">
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-show="!state.isMobile">
-      <span>{{ new Date(task.scheduledStartTime).getHours() }}</span>
-    </td>
+    
     <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
         <div class="ml-4">
           <!-- {{ this.isComplete(task.id) }}? -->
-            <input type="checkbox" @click="this.$store.commit('switchCompletion', task.id)" class="rounded">
+          <input type="checkbox" @click="this.$store.commit('switchCompletion', task.id)" class="rounded">
           <span class="text-sm font-medium text-gray-900">
             &nbsp;{{ task.name }}
           </span>
         </div>
       </div>
     </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right" v-show="!state.isMobile">
+      <span>{{ getTime(task) }}</span>
+    </td>
+    <!-- <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center">
+        <div class="ml-4">
+          <span class="text-sm font-medium text-gray-900">
+            &nbsp;{{ task.name }}
+          </span>
+        </div>
+      </div>
+    </td> -->
     <td class="px-6 py-4 whitespace-nowrap" v-show="!state.isMobile">
       <span v-if="task.type == 'Shopping'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
         {{ task.type }}
@@ -26,6 +36,9 @@
       </span>
       <span v-if="task.type == 'Work'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
         {{ task.type }}
+      </span>
+      <span v-if="!task.isScheduled" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+        Unscheduled
       </span>
     </td>
     <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-show="!state.isMobile">
@@ -44,6 +57,32 @@ import { defineProps, reactive } from 'vue'
 defineProps({
   task: Object
 })
+
+let formatTime = (date) => {
+  let hours = date.getHours()
+  let mins = date.getMinutes()
+  if (mins === 0) {
+    mins = '00'
+  }
+  let amPm = 'AM'
+  if (hours >= 12) {
+      amPm = 'PM'
+    }
+  if (hours > 12) {
+    hours -= 12
+  }
+  return hours + ':' + mins + ' ' + amPm
+}
+
+let getTime = (task) => {
+  if (task.isScheduled) {
+    // let startTime = new Date(task.scheduledStartTime)
+    // let endTime = new Date(task.scheduledEndTime)
+
+    return formatTime(new Date(task.scheduledStartTime)) + ' - ' + formatTime(new Date(task.scheduledEndTime))
+  }
+  return
+}
 
 const state = reactive({
   innerWidth: window.innerWidth,
