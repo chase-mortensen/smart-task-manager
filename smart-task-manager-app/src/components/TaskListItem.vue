@@ -6,7 +6,10 @@
           <!-- {{ this.isComplete(task.id) }}? -->
             <input type="checkbox" @click="this.$store.commit('switchCompletion', task.id)" class="rounded">
           <span class="text-sm font-medium text-gray-900">
-            &nbsp;{{ task.name }}
+            &nbsp;{{ task.name }}&nbsp;
+          </span>
+          <span v-if="!task.isScheduled" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+            Unscheduled
           </span>
         </div>
       </div>
@@ -23,9 +26,6 @@
       </span>
       <span v-if="task.type == 'Work'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
         {{ task.type }}
-      </span>
-      <span v-if="!task.isScheduled" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-        Unscheduled
       </span>
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 w-1/6" v-show="!state.isMobile">
