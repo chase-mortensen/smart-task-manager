@@ -10,14 +10,15 @@
           <table class="min-w-full divide-y divide-gray-200 table-fixed">
             <thead class="bg-gray-200">
               <tr>
-                <th scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-gray-500 uppercase tracking-wider w-1/2">
-                  <!-- <strong>{{ formatDate(date) }}</strong> -->
-                  {{ date === 'unscheduled' ? 'Unscheduled' : formatDate(date) }}
+                <th v-if="date !== 'unscheduled'" scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-gray-500 uppercase tracking-wider w-1/2">
+                  {{ formatDate(date) }}
                 </th>
+                <th v-else scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-red-500 uppercase tracking-wider w-1/2">
+                  Unscheduled
+                </th>
+                <th v-show="!state.isMobile" class="w-1/6"></th>
+                <th v-show="!state.isMobile" class="w-1/6"></th>
                 <th class="w-1/6"></th>
-                <th class="w-1/6"></th>
-                <th class="w-1/6"></th>
-                <th></th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200" v-if="date !== 'unscheduled'">
@@ -48,6 +49,22 @@ let formatDate = (date) => {
   return new Date(date).toDateString();
 }
 
+const state = reactive({
+  innerWidth: window.innerWidth,
+  isMobile: window.innerWidth < 550,
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.innerWidth = window.innerWidth
+      this.isMobile = window.innerWidth < 550
+      console.log("innerWidth: ", this.innerWidth)
+    })
+  },
+  methods: {
+    isComplete (id) {
+      return $store.state.tasks.find(t => t.id == id).isComplete
+    },
+  }
+})
 
 </script>
 

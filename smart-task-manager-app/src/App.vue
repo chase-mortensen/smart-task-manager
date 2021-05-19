@@ -96,6 +96,15 @@
       </div>
     </header> -->
     <main>
+      <div class="flex items-center justify-center pt-6 sm:px-6 min-w-min">
+        <button class="justify-center xl:w-1/6 w-full md:w-1/4">
+          <div class="rounded-md shadow">
+            <span class="whitespace-nowrap w-full flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 md:py-2 md:text-lg md:px-10">
+              Add Task
+            </span>
+          </div>
+        </button>
+      </div>
       <div class="grid xl:grid-cols-2 sm:grid-cols-1">
         <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:ml-auto py-6 sm:px-6 xl:pl-8 xl:pr-4 xl:w-5/6">
           <TaskList />
