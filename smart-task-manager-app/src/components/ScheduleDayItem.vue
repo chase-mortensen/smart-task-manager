@@ -6,7 +6,7 @@
         <div class="ml-4">
           <!-- {{ this.isComplete(task.id) }}? -->
           <input type="checkbox" @click="this.$store.commit('switchCompletion', task.id)" class="rounded">
-          <span class="text-sm font-medium text-gray-900">
+          <span class="text-sm font-medium text-gray-700">
             &nbsp;{{ task.name }}
           </span>
         </div>

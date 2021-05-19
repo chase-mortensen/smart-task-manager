@@ -5,7 +5,7 @@
         <div class="ml-4">
           <!-- {{ this.isComplete(task.id) }}? -->
             <input type="checkbox" @click="this.$store.commit('switchCompletion', task.id)" class="rounded">
-          <span class="text-sm font-medium text-gray-900">
+          <span class="text-sm font-medium text-gray-700">
             &nbsp;{{ task.name }}&nbsp;
           </span>
           <span v-if="!task.isScheduled" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
