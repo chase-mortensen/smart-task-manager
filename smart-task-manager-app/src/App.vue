@@ -10,22 +10,38 @@
     </header> -->
     <main class="relative">
       <div class="flex items-center justify-center pt-6 sm:px-6 min-w-min">
-        <button class="justify-center xl:w-1/6 w-full md:w-1/4">
+        <button class="justify-center 2xl:w-1/6 w-full md:w-1/4">
           <div class="rounded-md shadow">
-            <span class="whitespace-nowrap w-full flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 md:py-2 md:text-lg md:px-10">
+            <span class="whitespace-nowrap w-full flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 md:py-2 md:text-lg md:px-10">
               Add Task
             </span>
           </div>
         </button>
       </div>
-      <div class="grid xl:grid-cols-2 sm:grid-cols-1">
-        <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:ml-auto py-6 sm:px-6 xl:pl-8 xl:pr-4 xl:w-5/6">
-          <TaskList />
+      <div class="grid 2xl:grid-cols-2 sm:grid-cols-1">
+        <div class="max-w-7xl 2xl:min-w-min sm:min-w-full 2xl:ml-auto py-6 sm:px-6 2xl:pl-8 2xl:pr-4 2xl:w-5/6">
+          <div class="rounded border-4 border-gray-100 sm:shadow-lg">
+            <div class="px-3 py-3">
+              <span class="text-lg text-gray-500">
+                All Tasks
+              </span>
+              <TaskList />
+            </div>
+          </div>
         </div>
         <!-- <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4"> -->
-        <div class="max-w-7xl sm:min-w-min xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4 xl:w-5/6">
+        <div class="max-w-7xl sm:min-w-full 2xl:min-w-min 2xl:mr-auto py-6 sm:px-6 2xl:pr-8 2xl:pl-4 2xl:w-5/6">
           <!-- <h2>&nbsp;Schedule</h2> -->
-          <Schedule />
+          <div class="rounded border-4 border-gray-100 sm:shadow-lg">
+            <div class="px-3 py-3">
+              <span class="text-lg text-gray-500">
+                Schedule
+              </span>
+              <Schedule />
+            </div>
+          </div>
+
+          
           <!-- <TaskList :tasks="state.tasks" /> -->
           <!-- <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
             <button @click="this.$store.commit('increment')">count is: {{ this.$store.state.count }}</button>

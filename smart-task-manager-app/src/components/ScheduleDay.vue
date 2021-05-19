@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col">
-    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div
-        class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+        class="pt-1 align-middle inline-block min-w-full sm:px-6 lg:px-8"
       >
         <div
           class="shadow max-w-full overflow-hidden border-b border-gray-200 sm:rounded-lg"
@@ -13,10 +13,10 @@
                 <th v-if="date !== 'unscheduled'" scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-gray-500 uppercase tracking-wider w-1/2">
                   {{ formatDate(date) }}
                 </th>
-                <th v-else scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-red-500 uppercase tracking-wider w-1/2">
+                <th v-else scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-red-500 uppercase tracking-wider w-1/3">
                   Unscheduled
                 </th>
-                <th v-show="!state.isMobile" class="w-1/6"></th>
+                <th v-show="!state.isMobile" class="w-1/3"></th>
                 <th v-show="!state.isMobile" class="w-1/6"></th>
                 <th class="w-1/6"></th>
               </tr>

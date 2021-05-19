@@ -12,7 +12,7 @@
         </div>
       </div>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right" v-show="!state.isMobile">
+    <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-right" v-show="!state.isMobile">
       <span v-if="task.isScheduled">{{ getTime(task) }}</span>
       <!-- <span v-else class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
         Unscheduled
@@ -72,7 +72,7 @@ let formatTime = (date) => {
   if (hours > 12) {
     hours -= 12
   }
-  return hours + ':' + mins + ' ' + amPm
+  return hours + ':' + mins + amPm
 }
 
 let getTime = (task) => {
