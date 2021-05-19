@@ -20,7 +20,7 @@
       </div>
       <div class="grid 2xl:grid-cols-2 sm:grid-cols-1">
         <div class="max-w-7xl 3xl:min-w-min sm:min-w-full 2xl:ml-auto py-6 sm:px-6 2xl:pl-8 2xl:pr-4">
-          <div class="rounded border border-gray-100 shadow-lg hover:shadow-xl transition duration-500 ease-in-out">
+          <div class="rounded border-2 border-gray-100 hover:shadow-lg transition duration-500 ease-in-out">
             <div class="px-3 py-3">
               <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium">
                 All Tasks
@@ -32,7 +32,7 @@
         <!-- <div class="max-w-7xl xl:min-w-min sm:min-w-full xl:mr-auto py-6 sm:px-6 xl:pr-8 xl:pl-4"> -->
         <div class="max-w-7xl sm:min-w-full 3xl:min-w-min 2xl:mr-auto py-6 sm:px-6 2xl:pr-8 2xl:pl-4">
           <!-- <h2>&nbsp;Schedule</h2> -->
-          <div class="rounded border border-gray-100 shadow-lg hover:shadow-xl transition duration-500 ease-in-out">
+          <div class="rounded border-2 border-gray-100 hover:shadow-lg transition duration-500 ease-in-out">
             <div class="px-3 py-3 justify-items-center">
               <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium">
                 Schedule

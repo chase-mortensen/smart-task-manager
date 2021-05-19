@@ -14,6 +14,7 @@
     </td>
     <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-right" v-show="!state.isMobile">
       <span v-if="task.isScheduled">{{ getTime(task) }}</span>
+      <span v-else class="text-white">12:00AM - 11:59PM</span>
       <!-- <span v-else class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
         Unscheduled
       </span> -->
