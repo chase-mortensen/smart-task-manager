@@ -31,6 +31,14 @@
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
+            Status
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {{ task.isComplete ? 'Completed' : 'Pending' }}
+          </dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
             Type(s)
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -48,7 +56,7 @@
             </span>
           </dd>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
             Estimated Duration
           </dt>
@@ -58,7 +66,7 @@
           </dd>
         </div>
         <!-- This may end up being a list? Scheduled Times -->
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
             Scheduled Time
           </dt>
@@ -69,7 +77,7 @@
             </span>
           </dd>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
             About
           </dt>
@@ -77,15 +85,30 @@
             <span v-if="task.recurring" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
               recurring
             </span>
+            <span v-if="task.recurring">&nbsp;</span>
             <span v-if="task.has_deadline" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
               has deadline
             </span>
+            <span v-if="task.has_deadline">&nbsp;</span>
             <span v-if="task.can_be_split" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
               divisible
             </span>
+            <span v-if="task.can_be_split">&nbsp;</span>
             <span v-if="!task.recurring && !task.has_deadline && !task.can_be_split">-</span>
           </dd>
         </div>
+        <!-- <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            
+          </dt>
+          <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-right">
+            <button class="text-indigo-600 hover:text-indigo-500 bg-indigo-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Edit</button>
+            &nbsp;
+            &nbsp;
+            <button class="text-red-600 hover:text-red-500 bg-red-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Delete</button>
+
+          </dd>
+        </div> -->
         <!-- <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
             Events (?)
@@ -123,6 +146,14 @@
         </div> -->
       </dl>
     </div>
+    
+  </div>
+  <div class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-right px-6 py-6">
+    <button class="text-indigo-600 hover:text-indigo-500 bg-indigo-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Edit</button>
+    &nbsp;
+    &nbsp;
+    <button class="text-red-600 hover:text-red-500 bg-red-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Delete</button>
+
   </div>
 </template>
 
