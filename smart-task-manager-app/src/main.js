@@ -25,17 +25,25 @@ const store = createStore({
       console.log('switching completion...')
       state.tasks.find(task => task.id === id).isComplete = !state.tasks.filter(task => task.id === id).isComplete
     },
-    showDetailsClicked (state, task_id) {
-      if (state.tasks.find(task => task.id === task_id).showDetails) {
-        state.tasks.find(task => task.id === task_id).showDetails = false
-      }
-      else {
-        for (task in state.tasks.filter(task => task.showDetails)) {
-          task.showDetails = false
-        }
-        state.tasks.find(task => task.id === task_id).showDetails = true
-      }
-    }
+    // showDetailsClicked (state, task_id) {
+    //   if (state.tasks.find(task => task.id === task_id).showDetails) {
+    //     state.tasks.find(task => task.id === task_id).showDetails = false
+    //   }
+    //   else {
+    //     for (task in state.tasks.filter(task => task.showDetails)) {
+    //       task.showDetails = false
+    //     }
+    //     state.tasks.find(task => task.id === task_id).showDetails = true
+    //   }
+    // },
+    showDetails (state, payload) {
+      state.tasks.find(task => task.id === payload.id).showDetails = true
+    },
+    clearDetails (state) {
+      state.tasks.forEach(task => {
+        task.showDetails = false
+      })
+    },
   },
   getters: {
     incompleteTasks (state) {
@@ -61,6 +69,9 @@ const store = createStore({
     },
     unscheduledTasks (state) {
       return state.tasks.filter(task => !task.isScheduled)
+    },
+    showDetailsTask (state) {
+      return state.tasks.find(task => task.showDetails)
     }
     // taskCompletionStatus (state, id) {
     //   // console.log('in taskCompletionStatus... ', state.tasks.find(task => task.id === id).isComplete, state.tasks.find(task => task.id === id))

@@ -18,7 +18,7 @@
       <span v-if="task.type == 'Shopping'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
         {{ task.type }}
       </span>
-      <span v-if="task.type == 'Exercise'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+      <span v-if="task.type == 'Exercise'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
         {{ task.type }}
       </span>
       <span v-if="task.type == 'Personal'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
@@ -33,7 +33,8 @@
       <span v-if="task.duration % 60 != 0">{{ task.duration % 60 }} mins</span>
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium w-1/6">
-      <button class="text-indigo-600 hover:text-indigo-500" v-on:click="console.log('clicked...')">Details</button>
+      <button class="text-indigo-600 hover:text-indigo-500" @click="this.$store.commit({type: 'showDetails', id: task.id })">Details</button>
+      <!-- <button class="text-indigo-600 hover:text-indigo-500" @click="this.$store.commit('increment')">Details {{ this.$store.state.count }}</button> -->
     </td>
   </tr>
 </template>
@@ -44,6 +45,10 @@ import { defineProps, reactive } from 'vue'
 defineProps({
   task: Object
 })
+
+let log = (message) => {
+  console.log(message)
+}
 
 const state = reactive({
   innerWidth: window.innerWidth,

@@ -22,10 +22,16 @@
         <div class="max-w-7xl 3xl:min-w-min sm:min-w-full 2xl:ml-auto py-6 sm:px-6 2xl:pl-8 2xl:pr-4">
           <div class="rounded border-2 border-gray-100 hover:shadow-lg transition duration-500 ease-in-out">
             <div class="px-3 py-3">
-              <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium">
-                All Tasks
-              </span>
-              <TaskList />
+              <div v-if="this.$store.getters.showDetailsTask === undefined">
+                <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium text-xl">
+                  All Tasks
+                </span>
+                <TaskList />
+              </div>
+              <div v-else>
+                <!-- {{ this.$store.getters.showDetailsTask.name }} -->
+                <TaskDetails :task="this.$store.getters.showDetailsTask" />
+              </div>
             </div>
           </div>
         </div>
@@ -34,7 +40,7 @@
           <!-- <h2>&nbsp;Schedule</h2> -->
           <div class="rounded border-2 border-gray-100 hover:shadow-lg transition duration-500 ease-in-out">
             <div class="px-3 py-3 justify-items-center">
-              <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium">
+              <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium text-xl">
                 Schedule
               </span>
               <Schedule />
@@ -58,6 +64,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { BellIcon, MenuIcon, XIcon, CogIcon } from '@heroicons/vue/outline'
 
 import TaskList from './components/TaskList.vue'
+import TaskDetails from './components/TaskDetails.vue'
 import Schedule from './components/Schedule.vue'
 import MenuBar from './components/MenuBar.vue'
 

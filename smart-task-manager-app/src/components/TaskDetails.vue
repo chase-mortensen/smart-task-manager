@@ -1,8 +1,18 @@
 <template>
+<!-- TODO: change to tr, td? -->
   <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        Tuesday May 18
+        <!-- <ArrowCircleLeftIcon class="h-6 w-6" aria-hidden="true" /> Task Details -->
+        
+        <span class="text-gray-500 whitespace-nowrap w-full flex items-center justify-left border border-transparent text-base font-medium text-xl">
+          <button class="bg-transparent p-1 rounded-full text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-500 focus:ring-white"
+          @click="this.$store.commit('clearDetails')">
+          <!-- <span class="sr-only">View notifications</span> -->
+          <ArrowCircleLeftIcon class="h-6 w-6" aria-hidden="true" />
+        </button>
+        &nbsp;Task Details</span>
+              
       </h3>
       <!-- <p class="mt-1 max-w-2xl text-sm text-gray-500">
         Personal details and application.
@@ -16,31 +26,47 @@
             Task name
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            Margot Foster
+            {{ task.name }}
           </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
-            Application for
+            Type(s)
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            Backend Developer
+            <span v-if="task.type == 'Shopping'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              {{ task.type }}
+            </span>
+            <span v-if="task.type == 'Exercise'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
+              {{ task.type }}
+            </span>
+            <span v-if="task.type == 'Personal'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+              {{ task.type }}
+            </span>
+            <span v-if="task.type == 'Work'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+              {{ task.type }}
+            </span>
           </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
-            Email address
+            Estimated Duration
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            margotfoster@example.com
+            <span v-if="task.duration >= 60">{{ Math.floor(task.duration / 60) }} hrs </span>
+            <span v-if="task.duration % 60 != 0">{{ task.duration % 60 }} mins</span>
           </dd>
         </div>
+        <!-- This may end up being a list? Scheduled Times -->
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
-            Salary expectation
+            Scheduled Time
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            $120,000
+            <span v-if="task.isScheduled">{{ getTime(task) }}</span>
+            <span v-if="task.has_deadline" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+              Unscheduled
+            </span>
           </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -48,12 +74,21 @@
             About
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+            <span v-if="task.recurring" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+              recurring
+            </span>
+            <span v-if="task.has_deadline" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+              has deadline
+            </span>
+            <span v-if="task.can_be_split" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+              divisible
+            </span>
+            <span v-if="!task.recurring && !task.has_deadline && !task.can_be_split">-</span>
           </dd>
         </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <!-- <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
-            Attachments
+            Events (?)
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
@@ -85,18 +120,49 @@
               </li>
             </ul>
           </dd>
-        </div>
+        </div> -->
       </dl>
     </div>
   </div>
 </template>
 
-<script>
-// import { PaperClipIcon } from '@heroicons/vue/solid'
+<script setup>
+import { ArrowCircleLeftIcon } from '@heroicons/vue/solid'
+import { defineProps, reactive } from 'vue'
 
-export default {
-  // components: {
-  //   PaperClipIcon,
-  // },
+defineProps({
+  task: Object
+})
+
+let formatTime = (date) => {
+  let hours = date.getHours()
+  let mins = date.getMinutes()
+  if (mins === 0) {
+    mins = '00'
+  }
+  let amPm = 'AM'
+  if (hours >= 12) {
+      amPm = 'PM'
+    }
+  if (hours > 12) {
+    hours -= 12
+  }
+  return hours + ':' + mins + amPm
 }
+
+let getTime = (task) => {
+  if (task.isScheduled) {
+    // let startTime = new Date(task.scheduledStartTime)
+    // let endTime = new Date(task.scheduledEndTime)
+
+    return formatTime(new Date(task.scheduledStartTime)) + ' - ' + formatTime(new Date(task.scheduledEndTime))
+  }
+  return
+}
+
+const state = reactive({ 
+  components: {
+    ArrowCircleLeftIcon,
+  },
+})
 </script>
