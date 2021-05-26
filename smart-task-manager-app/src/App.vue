@@ -22,15 +22,19 @@
         <div class="max-w-7xl 3xl:min-w-min sm:min-w-full 2xl:ml-auto py-6 sm:px-6 2xl:pl-8 2xl:pr-4">
           <div class="rounded border-2 border-gray-100 hover:shadow-lg transition duration-500 ease-in-out">
             <div class="px-3 py-3">
-              <div v-if="this.$store.getters.showDetailsTask === undefined">
+              <div v-show="this.$store.getters.showDetailsTask === undefined && this.$store.getters.editingTask === undefined">
                 <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-center border border-transparent text-base font-medium text-xl">
                   All Tasks
                 </span>
                 <TaskList />
               </div>
-              <div v-else>
+              <div v-if="this.$store.getters.showDetailsTask !== undefined ">
                 <!-- {{ this.$store.getters.showDetailsTask.name }} -->
                 <TaskDetails :task="this.$store.getters.showDetailsTask" />
+              </div>
+              <div v-if="this.$store.getters.editingTask !== undefined ">
+                <!-- {{ this.$store.getters.showDetailsTask.name }} -->
+                <EditTask :task="this.$store.getters.editingTask" />
               </div>
             </div>
           </div>
@@ -67,6 +71,7 @@ import TaskList from './components/TaskList.vue'
 import TaskDetails from './components/TaskDetails.vue'
 import Schedule from './components/Schedule.vue'
 import MenuBar from './components/MenuBar.vue'
+import EditTask from './components/EditTask.vue'
 
 
 

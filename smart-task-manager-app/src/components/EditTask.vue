@@ -7,11 +7,11 @@
         
         <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-left border border-transparent text-base font-medium text-xl">
           <button class="bg-transparent p-1 rounded-full text-gray-700 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-500 focus:ring-white"
-          @click="this.$store.commit('clearDetails')">
+          @click="this.$store.commit({ type: 'showDetails', id: task.id })">
           <!-- <span class="sr-only">View notifications</span> -->
           <ArrowCircleLeftIcon class="h-6 w-6" aria-hidden="true" />
         </button>
-        &nbsp;Task Details</span>
+        &nbsp;Edit Task</span>
               
       </h3>
       <!-- <p class="mt-1 max-w-2xl text-sm text-gray-500">
@@ -26,15 +26,22 @@
             Task name
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ task.name }}
+            <input type="text" name="task_name" id="task_name" :value="task.name" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"/>
+            <!-- {{ task.name }} -->
           </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
             Status
           </dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ task.isComplete ? 'Complete' : 'Pending' }}
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center">
+            <!-- {{ task.isComplete ? 'Complete' : 'Pending' }} -->
+            <!-- <select name="cars" id="cars" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" :value="task.isComplete">
+              <option value="volvo">Complete</option>
+              <option value="saab">Pending</option>
+            </select> -->
+            <input type="checkbox" name="task_status" id="task_status" class="focus:ring-indigo-500 focus:border-indigo-500 block  sm:text-sm border-gray-300 rounded-md" :value="task.isComplete">
+            <span>&nbsp;{{ task.isComplete ? 'Complete' : 'Pending' }}</span>
           </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -149,10 +156,10 @@
     
   </div>
   <div class="mt-1 text-sm sm:mt-0 sm:col-span-2 text-right px-6 py-6">
-    <button class="text-blue-600 hover:text-blue-500 bg-blue-100 rounded px-3 py-1" @click="this.$store.commit({type: 'editTask', id: task.id })">Edit</button>
+    <button class="text-gray-600 hover:text-gray-500 bg-gray-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Cancel</button>
     &nbsp;
     &nbsp;
-    <button class="text-red-600 hover:text-red-500 bg-red-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Delete</button>
+    <button class="text-blue-600 hover:text-blue-500 bg-blue-100 rounded px-3 py-1" @click="this.$store.commit({type: 'showDetails', id: task.id })">Save</button>
 
   </div>
 </template>
@@ -195,5 +202,10 @@ const state = reactive({
   components: {
     ArrowCircleLeftIcon,
   },
+  watch: { 
+    task: function(newVal, oldVal) { // watch it
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+    }
+  }
 })
 </script>
