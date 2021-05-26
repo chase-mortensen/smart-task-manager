@@ -13,7 +13,7 @@
                 <th v-if="date !== 'unscheduled'" scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-gray-500 uppercase tracking-wider w-1/2">
                   {{ formatDate(date) }}
                 </th>
-                <th v-else scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-red-800 uppercase tracking-wider w-1/2">
+                <th v-else scope="colgroup" class="px-6 py-3 text-left text-sm font-big text-red-500 uppercase tracking-wider w-1/2">
                   Unscheduled
                 </th>
                 <th v-show="!state.isMobile" class="w-1/3"></th>

@@ -37,6 +37,9 @@ const store = createStore({
     //   }
     // },
     showDetails (state, payload) {
+      state.tasks.forEach(task => { // Duplicate code - call clearDetails here instead
+        task.showDetails = false
+      })
       state.tasks.find(task => task.id === payload.id).showDetails = true
     },
     clearDetails (state) {

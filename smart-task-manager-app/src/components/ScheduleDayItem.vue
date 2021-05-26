@@ -1,6 +1,5 @@
 <template>
-  <tr v-on:click="console.log('clicked...')">
-    
+  <tr>
     <td class="px-3 sm:px-6 py-4 whitespace-normal">
       <div class="flex items-center">
         <div class="ml-4">
@@ -48,7 +47,7 @@
       <span v-if="task.duration % 60 != 0">{{ task.duration % 60 }} mins</span>
     </td> -->
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <button class="text-indigo-600 hover:text-indigo-500" @click="this.$store.commit('showDetails', task.id)">Details</button>
+      <button class="text-indigo-600 hover:text-indigo-500" @click="this.$store.commit({type: 'showDetails', id: task.id })">Details</button>
     </td>
   </tr>
 </template>

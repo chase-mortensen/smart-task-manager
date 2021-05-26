@@ -5,8 +5,8 @@
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <!-- <ArrowCircleLeftIcon class="h-6 w-6" aria-hidden="true" /> Task Details -->
         
-        <span class="text-gray-500 whitespace-nowrap w-full flex items-center justify-left border border-transparent text-base font-medium text-xl">
-          <button class="bg-transparent p-1 rounded-full text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-500 focus:ring-white"
+        <span class="text-gray-700 whitespace-nowrap w-full flex items-center justify-left border border-transparent text-base font-medium text-xl">
+          <button class="bg-transparent p-1 rounded-full text-gray-700 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-500 focus:ring-white"
           @click="this.$store.commit('clearDetails')">
           <!-- <span class="sr-only">View notifications</span> -->
           <ArrowCircleLeftIcon class="h-6 w-6" aria-hidden="true" />
@@ -34,7 +34,7 @@
             Status
           </dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ task.isComplete ? 'Completed' : 'Pending' }}
+            {{ task.isComplete ? 'Complete' : 'Pending' }}
           </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
