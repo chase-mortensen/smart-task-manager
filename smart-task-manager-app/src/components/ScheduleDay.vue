@@ -67,30 +67,3 @@ const state = reactive({
 })
 
 </script>
-
-<!-- I'm still trying to figure out the script setup... -->
-<!-- <script setup>
-import ScheduleDayItem from "./ScheduleDayItem.vue";
-
-import { defineProps, reactive } from 'vue'
-
-defineProps({
-  date: String
-})
-
-const state = reactive({
-  data() {
-
-  },
-  methods: {
-    formatDate (date) {
-      let formattedDate = new Date(date)
-      return formattedDate
-    },
-    getDay (date) {
-      return 'Tuesday'
-    }
-  }
-})
-
-</script> -->
